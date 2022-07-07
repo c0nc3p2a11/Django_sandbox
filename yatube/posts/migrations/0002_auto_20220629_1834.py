@@ -23,6 +23,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='post',
             name='group',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='posts.Group'),
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE,
+                                    to='posts.Group'),
         ),
     ]
