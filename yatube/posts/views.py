@@ -2,9 +2,12 @@ from django.shortcuts import render, get_object_or_404
 from .models import Post, Group
 
 
+TEN_CONST = 10
+
+
 def index(request):
     template = 'posts/index.html'
-    posts = Post.objects.order_by('-pub_date')[:10]
+    posts = Post.objects.select_related('author').all()[:TEN_CONST]
     title = 'Это главная страница проекта Yatube'
     text = 'Последние обновления на сайте'
     context = {
@@ -20,7 +23,7 @@ def group_posts(request, slug):
     text = 'Лев Толстой – зеркало русской революции.'
     subtext = 'Группа тайных поклонников графа'
     group = get_object_or_404(Group, slug=slug)
-    posts = Post.objects.filter(group=group).order_by('-pub_date')[:10]
+    posts = group.posts.all()[:TEN_CONST]
     title = f'Записи сообщества {str(group)}'
     context = {
         'group': group,
