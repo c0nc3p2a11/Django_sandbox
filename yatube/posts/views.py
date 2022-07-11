@@ -21,7 +21,6 @@ def index(request):
 def group_posts(request, slug):
     template = 'posts/group_list.html'
     text = 'Лев Толстой – зеркало русской революции.'
-    subtext = 'Группа тайных поклонников графа'
     group = get_object_or_404(Group, slug=slug)
     posts = group.posts.all()[:TEN_CONST]
     title = f'Записи сообщества {str(group)}'
@@ -29,7 +28,6 @@ def group_posts(request, slug):
         'group': group,
         'posts': posts,
         'text': text,
-        'title': title,
-        'subtext': subtext
+        'title': title
     }
     return render(request, template, context)

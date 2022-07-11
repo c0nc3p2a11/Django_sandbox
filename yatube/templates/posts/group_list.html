@@ -8,7 +8,7 @@
       {% block content %}
       <div class="container py-5">
         <h1>{{ group }}</h1>
-        <p>{{ subtext }}</p>
+        <p>{{ group.description }}</p>
       {% for post in posts %}
       <ul>
         <li>
